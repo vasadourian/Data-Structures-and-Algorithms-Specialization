@@ -1,0 +1,39 @@
+import sys
+
+def get_optimal_value(capacity, weights, values):
+
+    values_by_weight = []
+
+    for i in range(n):
+        x = values[i] / weights[i]
+        values_by_weight.append(x)
+    
+    #(sorted(values_by_weight, reverse = True))
+    
+    A = [0,0,0]
+    V = 0
+    
+    for i in sorted(values_by_weight, reverse = True):
+        print i
+        if capacity == 0:
+            return V,A
+        a = min(weights[i], capacity)
+        V += a*(values[i] / weights[i])
+        weights[i] -= a
+        A[i] += a
+        capacity -= a
+
+
+
+if __name__ == "__main__":
+    data = list(map(int, raw_input().split()))
+    n, capacity = data[0:2]
+    values = data[2:(2 * n + 2):2]
+    weights = data[3:(2 * n + 2):2]
+    #added by me
+    #print(values)
+    #print(weights)
+    
+    opt_value = get_optimal_value(capacity, weights, values)
+    #print("{:.10f}".format(opt_value))
+    print(opt_value)
